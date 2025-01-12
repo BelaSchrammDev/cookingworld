@@ -1,0 +1,121 @@
+.top-easy-border {
+    border-top: #efefef solid 2px;
+}
+
+/* ---------------------------------------------- */
+
+.prasselkuchen-image {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: clamp(5px, 2vw, 25px);
+}
+ 
+.recipe-infos {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.recipe-info {
+    height: max-content;
+    width: max-content;
+    background-color: #efefef;
+    border-radius: clamp(5px, 0.5vw, 10px);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    text-wrap: nowrap;
+}
+
+.recipe-info img {
+    border-radius: 0;
+    height: 20px;
+}
+
+/* ---------------------------------------------- */
+
+.ingredients-amount {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.ingredients-amount-value {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.ingredients-amount-value input {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(16px, 2vw, 32px);
+    border: 1px solid lightgray;
+    border-radius: 10px 0 0 10px;
+    width: 100px;
+}
+
+.ingredients-list {
+    padding-top: 20px;
+}
+
+.ingredients-list h3 {
+    font-weight: bold;
+}
+
+.ingredients-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ingredients-list li {
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+
+.ingredients-list li:nth-child(odd) {
+    background-color: #efefef;
+}
+
+/* ---------------------------------------------- */
+
+.prasselkuchen-author {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.author {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.author img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.author h2 {
+    font-weight: normal;
+}

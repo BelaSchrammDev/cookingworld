@@ -1,0 +1,269 @@
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0px;
+    overflow-x: hidden;
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #54a05a #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #54a05a;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+}
+
+.main_container {
+    padding-left: clamp(10px, 5vw, 180px);
+    padding-right: clamp(10px, 5vw, 180px);
+}
+
+.main_section {
+    flex-grow: 1;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------------------------------------------- */
+
+.button-green {
+    background-color: green;
+    border: none;
+    height: clamp(36px, 4vw, 52px);
+    padding: 10px 30px;
+    color: white;
+    font-size: clamp(12px, 2vw, 24px);
+    text-wrap: nowrap;
+}
+
+.button-green:hover {
+    background-color: rgb(132, 179, 132);
+    cursor: pointer;
+}
+
+/* ---------------------------------------------- */
+
+header {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.36);
+    margin-bottom: clamp(10px, 5vw, 50px);
+}
+
+header img {
+    width: clamp(100px, 15vw, 400px);
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+nav a {
+    color: rgb(64, 59, 59);
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+.nav_hightlight {
+    cursor: default;
+    color: green;
+}
+
+.nav_hightlight::after {
+    transform: scaleX(100%);
+    transition: unset;
+}
+
+nav a::after {
+    content: '';
+    background-color: rgb(0, 128, 0);
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: transform 200ms ease-in-out;
+    transform: scaleX(0);
+    transform-origin: center;
+}
+
+nav a:hover::after {
+    transform: scaleX(100%);
+}
+
+.burger_menu {
+    height: 40px;
+    width: 40px;
+    display: none;
+    margin: unset;
+}
+
+.burger_menu:hover {
+    cursor: pointer;
+}
+
+.nav_bar_overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------------------------------- */
+
+footer {
+    background-color: rgb(64, 59, 59);
+    height: max-content;
+    min-height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    margin-top: clamp(10px, 5vw, 50px);
+}
+
+footer span {
+    text-wrap: nowrap;
+}
+
+.footer_copyright {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    border-right: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.footer_copyright_logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_copyright_logo img {
+    padding-left: 10px;
+    height: clamp(20px, 7vw, 70px);
+    width: auto;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative;
+}
+
+.footer-links a:hover {
+    text-decoration: none;
+}
+
+.footer-links a::after {
+    content: '';
+    background-color: white;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: transform 200ms ease-in-out;
+    transform: scaleX(0);
+    transform-origin: center;
+}
+
+.footer-links a:hover::after {
+    transform: scaleX(100%);
+}
+
+@media (max-width: 600px) {
+
+    header {
+        height: 60px;
+        align-items: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-end;
+    }
+
+    nav {
+        position: fixed;
+        background-color: white;
+        top: 60px;
+        width: 150px;
+        right: -180px;
+        z-index: 20;
+        border: 1px solid black;
+        padding: 10px;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+        transition: right 250ms ease-in-out;
+    }
+
+    nav a::after {
+        background-color: unset;
+    }
+
+    .burger_menu {
+        display: block;
+    }
+}

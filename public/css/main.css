@@ -1,0 +1,104 @@
+.section-recipe-of-the-day {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: clamp(10px, 5vw, 50px);
+}
+
+.section-recipe-of-the-day h2 {
+    margin-top: 0;
+}
+
+.section-recipe-of-the-day img {
+    width: clamp(230px, 30vw, 500px);
+    object-fit: cover;
+    height: auto;
+    border-radius: clamp(5px, 2vw, 25px);
+}
+
+.croissant-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+/* ---------------------------------------------- */
+
+.section-other-recipe {
+    background-color: rgb(239, 239, 239);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: clamp(10px, 5vw, 50px);
+    text-align: center;
+}
+
+.other-recipes {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.recipe img {
+    width: clamp(120px, 20vw, 500px);
+    height: auto;
+    border-radius: clamp(5px, 2vw, 25px);
+}
+
+.recipe img:hover {
+    filter: brightness(120%);
+}
+
+/* ---------------------------------------------- */
+
+.section-wok-vs-pan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-wok-vs-pan img {
+    width: clamp(150px, 20vw, 500px);
+    height: auto;
+    border-radius: clamp(5px, 2vw, 25px);
+    object-fit: cover;
+}
+
+.wok-vs-pan-description {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* ---------------------------------------------- */
+
+@media (max-width: 550px) {
+    .width_less_550px {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .croissant-description {
+        align-items: center;
+    }
+
+    .recipe img {
+        width: clamp(230px, 30vw, 500px);
+    }
+
+
+}

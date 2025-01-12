@@ -1,0 +1,10 @@
+.burger-menu-white {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+.burger-menu {
+    display: none;
+}
