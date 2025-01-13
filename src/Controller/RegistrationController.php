@@ -22,18 +22,14 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
-    public function __construct(private EmailVerifier $emailVerifier)
-    {
-    }
+    public function __construct(private EmailVerifier $emailVerifier) {}
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,MailerInterface $mailer, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, MailerInterface $mailer, Security $security, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
-        $debugstring = 'Debug: ';
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
@@ -46,7 +42,9 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
                 (new TemplatedEmail())
                     ->from(new Address('admin@bela-schramm.de', 'Kochwelt Registrierungs Bot'))
                     ->to((string) $user->getEmail())
@@ -64,7 +62,6 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'debug' => $debugstring,
             'registrationForm' => $form,
         ]);
     }
@@ -73,6 +70,7 @@ class RegistrationController extends AbstractController
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
     {
         $id = $request->query->get('id');
+        $headline = null;
 
         if (null === $id) {
             return $this->redirectToRoute('app_register');
@@ -87,15 +85,15 @@ class RegistrationController extends AbstractController
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $user);
+            $headline = 'Deine Registrierung war erfolgreich.';
         } catch (VerifyEmailExceptionInterface $exception) {
+            $headline = 'Email "' . $user->email . '" konnte nicht bestätigt werden';
             $this->addFlash('error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
-            return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Deine Email Adresse wurde verifiziert.');
-
-        return $this->redirectToRoute('app_register');
+        return $this->render('registration/verify.success.html.twig', [
+            'user' => $user,
+            'headline' => $headline,
+        ]);
     }
 }

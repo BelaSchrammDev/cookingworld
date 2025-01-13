@@ -5,22 +5,26 @@
 		<title>Ingos Kochwelt</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 
-		<link rel="stylesheet" href="{{ asset('css/my-css-framework.css')}}"/>
+		<link
+		rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"/>
+		{# <link rel="stylesheet" href="{{ asset('css/my-css-framework.css')}}"/> #}
 		<link rel="stylesheet" href="{{ asset('css/fonts.css')}}"/>
 		<link rel="stylesheet" href="{{ asset('css/main.css')}}"/>
 		<link rel="stylesheet" href="{{ asset('css/recipes.css')}}"/>
 		<link rel="stylesheet" href="{{ asset('css/contact.css')}}"/>
 		<link rel="stylesheet" href="{{ asset('css/style.css')}}"/>
-		<link
-		rel="stylesheet" href="{{ asset('css/burger-menu.css')}}"/>
+		<link rel="stylesheet" href="{{ asset('css/burger-menu.css')}}"/>
 
-	 <script src="{{ asset('js/burger-menu.js') }}"></script>
+	 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+		 <script src="{{ asset('js/burger-menu.js') }}"></script>
+
 	</head>
-	<body class="flex_c_jfs_ast">
+
+	<body class="d-flex flex-column">
 		<header class="main_container">
 			<img src="{{ asset('img/logo.png')}}" alt="">
 			<nav id="nav_bar" class="nav_bar">
-				<a href="./index.html">Start</a>
+				<a href="{{ path('app_home')}}">Start</a>
 				<a href="./salad.html">Rezept des Tages</a>
 				<a href="{{ path('app_login')}}">Login</a>
 			</nav>
@@ -28,43 +32,36 @@
 			<div id="nav_bar_overlay" onclick="burger_menu_close()" class="nav_bar_overlay"></div>
 		</header>
 
-		<div class="main_section">
 
-			<div class="flex-grow-1">
-				{% for message in app.flashes('success') %}
-					<div class="mt-2">
-						<h3>{{ message }}</h3>
-					</div>
-				{% endfor %}
-
-				{% for message in app.flashes('error') %}
-					<div class="mt-2">
-						<h3>{{ message }}</h3>
-					</div>
-				{% endfor %}
-
-				{% block body %}{% endblock %}
-
+		{% for message in app.flashes('success') %}
+			<div class="mt-2 container alert alert-success">
+				<h3>{{ message }}</h3>
 			</div>
-		</div>
+		{% endfor %}
 
-		<footer class="main_container">
-			<div class="footer_copyright_logo">
-				<div class="footer_copyright">
-					<span>Kochwelt &copy;
-					</span>
-					<span>Béla Schramm</span>
-					<span>Ahmet Yapıcılar</span>
-					<span>Robert Andres</span>
+		{% for message in app.flashes('error') %}
+			<div class="mt-2 container alert alert-danger">
+				<h3>{{ message }}</h3>
+			</div>
+		{% endfor %}
+
+		<div class="content flex-grow-1"> {% block body %}{% endblock %}
+			</div>
+
+
+			<footer class="main_container">
+				<div class="footer_copyright_logo">
+					<div class="footer_copyright">
+						<span>Kochwelt &copy;</span>
+						<span>Béla Schramm</span>
+					</div>
+					<a href="./index.html"><img src="{{ asset('img/logo_small_white.png')}}" alt=""></a>
 				</div>
-				<a href="./index.html"><img src="{{ asset('img/logo_small_white.png')}}" alt=""></a>
-
-			</div>
-			<div class="footer-links">
-				<a href="./contact.html">Kontakt</a>
-				<a href="./imprint.html">Impressum</a>
-				<a href="./privacypolicy.html">Datenschutz</a>
-			</div>
-		</footer>
-	</body>
-</html>
+				<div class="footer-links">
+					<a href="./contact.html">Kontakt</a>
+					<a href="./imprint.html">Impressum</a>
+					<a href="./privacypolicy.html">Datenschutz</a>
+				</div>
+			</footer>
+		</body>
+	</html>
