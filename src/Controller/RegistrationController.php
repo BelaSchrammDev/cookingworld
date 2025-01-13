@@ -50,14 +50,14 @@ class RegistrationController extends AbstractController
                 (new TemplatedEmail())
                     ->from(new Address('admin@bela-schramm.de', 'Kochwelt Registrierungs Bot'))
                     ->to((string) $user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Bitte bestätige deine Email Adresse')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
 
             // do anything else you need here, like send an email
 
-            $this->addFlash('success', 'Your account has been created. Please check your email for a verification link.');
+            $this->addFlash('success', 'Dein Account wurde erstellt. Bitte bestätige deine Email Adresse mit dem Link den wir Dir geschickt haben.');
             return $this->redirectToRoute('app_login');
 
             // return $security->login($user, 'form_login', 'main');
@@ -94,7 +94,7 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Deine Email Adresse wurde verifiziert.');
 
         return $this->redirectToRoute('app_register');
     }
