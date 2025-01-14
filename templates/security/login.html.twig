@@ -14,12 +14,12 @@
 				<div class="mb-3">
 					Du bist eingeloggt als
 					{{ app.user.userIdentifier }},
-					<a role="button" class="d-flex button-green" href="{{ path('app_logout') }}">Ausloggen</a>
+					<a role="button" class="d-flex justify-content-center button-green" href="{{ path('app_logout') }}">Ausloggen</a>
 				</div>
 			{% else %}
 				<div class="mb_3">
 					<h3 class="h3 mb-3 font-weight-normal">Bitte anmelden</h3>
-					<a role="button" class="d-flex button-green" href="{{ path('app_register') }}">Noch kein Account? Hier registrieren!</a>
+					<a role="button" class="d-flex justify-content-center button-green" href="{{ path('app_register') }}">Noch kein Account? Hier registrieren!</a>
 				</div>
 			{% endif %}
 
