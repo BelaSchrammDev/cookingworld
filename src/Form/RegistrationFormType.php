@@ -23,6 +23,7 @@ class RegistrationFormType extends AbstractType
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Datenschutzverordnung zustimmen.',
+                'attr' => ['class' => 'form-check-input'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Du musst unsere Datenschutzordnung zustimmen.',

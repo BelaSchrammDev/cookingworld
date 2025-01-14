@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
 	{% for flash_error in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 	{% endfor %}
@@ -15,8 +16,9 @@
 		{{ form_row(registrationForm.username) }}
 		{{ form_row(registrationForm.email) }}
 		{{ form_row(registrationForm.plainPassword) }}
-		{{ form_row(registrationForm.agreeTerms) }}
-		<button class="btn btn-lg btn-primary float-right" type="submit">
+		{{ form_row(registrationForm.agreeTerms, { 'row_attr': {'class': 'mb-3 twig-form-checkbox-div'}}) }}
+
+		<button class="button-green align-self-end" type="submit">
 			Benutzer anlegen
 		</button>
 		{{ form_end(registrationForm) }}

@@ -46,6 +46,8 @@ body {
 }
 
 /* ---------------------------------------------- */
+/* cookingworld buttons */
+/* ---------------------------------------------- */
 
 .button-green {
     background-color: green;
@@ -55,11 +57,23 @@ body {
     color: white;
     font-size: clamp(12px, 2vw, 24px);
     text-wrap: nowrap;
+    text-decoration: none;
 }
 
 .button-green:hover {
     background-color: rgb(132, 179, 132);
     cursor: pointer;
+}
+
+/* ---------------------------------------------- */
+/* twig form checkbox alignment */
+/* ---------------------------------------------- */
+
+.twig-form-checkbox-div>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 /* ---------------------------------------------- */
