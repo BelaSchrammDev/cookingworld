@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="d-flex justify-content-between">
+		<h2>{{ recipe.name }}</h2>
+        <div class="d-flex gap-3">
+            <a href="{{ path('app_recipes.edit', { id: recipe.id}) }}" class="">ändern</a>
+            <a href="{{ path('app_recipes.list') }}" class="">zur Rezeptliste</a>
+        </div>
+	</div>
+
+	<div class="my-3 d-flex justify-content-start gap-3">
+		{% if recipe.picture %}
+			<img class="recipes-big-picture" src="{{ asset('img/recipes/' ~ recipe.picture) }}">
+		{% endif %}
+		<h3>{{ recipe.shortdescription }}</h3>
+	</div>
+
+	<p class="plain-text">{{ recipe.preparation }}</p>
+
+
+{% endblock %}

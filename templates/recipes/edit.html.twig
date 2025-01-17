@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h1>
+		{% if edit %}
+			Rezept bearbeiten
+		{% else %}
+			Neues Rezept hinzufügen
+		{% endif %}
+	</h1>
+
+	{{ form_start(form_recipe, {'attr': {'class': 'width-max-unset'}}) }}
+    {{ form_row(form_recipe._token) }}
+	{{ form_row(form_recipe.removepicture) }}
+	{{ form_row(form_recipe.name) }}
+	{{ form_row(form_recipe.shortdescription) }}
+	{{ form_row(form_recipe.preparation) }}
+	<div>
+		{{ form_label(form_recipe.picture) }}
+		{% if edit and picture %}
+			<div class="d-flex justify-content-start align-items-end gap-3 mb-3">
+				<img id="recipe_picture_img" class="recipes-edit-picture" src="{{ asset('img/recipes/' ~ picture) }}">
+				<button id="recipe_remove_toogle" type="button" class="btn btn-outline-danger text-nowrap" onclick="deletePicture()">altes Bild entfernen</button>
+			</div>
+		{% endif %}
+		<div class="d-flex flex-grow-1">
+			{{ form_widget(form_recipe.picture) }}
+			<button type="button" class="btn btn-outline-danger text-nowrap" onclick="clearFileInput()">X</button>
+		</div>
+	</div>
+	<button type="submit" class="button-green align-self-end">
+		{% if edit %}
+			Änderungen speichern
+		{% else %}
+			Speichern
+		{% endif %}
+	</button>
+	{{ form_end(form_recipe, { render_rest: false}) }}
+
+	 <script>
+	        function clearFileInput() {
+	            document.getElementById('recipe_picture').value = '';
+	        }
+	        function deletePicture() {
+	            if (document.getElementById('recipe_removepicture').checked) {
+	                document.getElementById('recipe_removepicture').checked = false;
+	                document.getElementById('recipe_picture_img').classList.remove('recipes-remove-picture');
+	                document.getElementById('recipe_remove_toogle').classList.remove('btn-danger');
+	                document.getElementById('recipe_remove_toogle').classList.add('btn-outline-danger');
+	                console.log('addPicture', document.getElementById('recipe_picture'));
+	            } else {
+	                document.getElementById('recipe_removepicture').checked = true;
+	                document.getElementById('recipe_picture_img').classList.add('recipes-remove-picture');
+	                document.getElementById('recipe_remove_toogle').classList.remove('btn-outline-danger');
+	                document.getElementById('recipe_remove_toogle').classList.add('btn-danger');
+	                console.log('deletePicture' , document.getElementById('recipe_picture'));
+	            }
+	        }
+	    </script>
+
+{% endblock %}

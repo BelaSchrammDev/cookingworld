@@ -46,6 +46,52 @@ body {
 }
 
 /* ---------------------------------------------- */
+/* cookingworld inputs and forms */
+/* ---------------------------------------------- */
+
+.textarea-resize-none {
+    resize: none;
+}
+
+.width-max-unset {
+    max-width: unset;
+    width: unset;
+}
+
+.recipes-edit-picture {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.recipes-remove-picture {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* ---------------------------------------------- */
+/* cookingworld tables */
+/* ---------------------------------------------- */
+
+.recipes-tumbnail {
+    padding-left: 20px;
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}    
+
+/* ---------------------------------------------- */
+/* cookingworld recipes */
+/* ---------------------------------------------- */
+
+.recipes-big-picture {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* ---------------------------------------------- */
 /* cookingworld buttons */
 /* ---------------------------------------------- */
 
@@ -63,6 +109,14 @@ body {
 .button-green:hover {
     background-color: rgb(132, 179, 132);
     cursor: pointer;
+}
+
+/* ---------------------------------------------- */
+/* utility classes */
+/* ---------------------------------------------- */
+
+.plain-text {
+    white-space: pre-line;
 }
 
 /* ---------------------------------------------- */

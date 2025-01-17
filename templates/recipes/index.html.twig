@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="d-flex justify-content-between">
+		<h1>Rezepte</h1>
+		<a href="{{ path('app_recipes.create') }}" class="button-green">Rezept hinzufügen</a>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<th>#</th>
+				<th>Name</th>
+				<th>Beschreibung</th>
+				<th>Aktionen</th>
+			</thead>
+			{% for recipe in recipes %}
+				<tr>
+					<td>
+						<div class="d-flex align-items-center">
+							{{ recipe.id }}
+							{% if recipe.picture %}
+								<img class="recipes-tumbnail" src="{{ asset('img/recipes/' ~ recipe.picture) }}">
+							{% endif %}
+						</div>
+					</td>
+					<td>
+						<a href="{{ path('app_recipes.show', { id: recipe.id}) }}">
+							{{ recipe.name }}</a>
+					</td>
+					<td>{{ recipe.shortdescription }}</td>
+					<td>
+						<a href="{{ path('app_recipes.edit', { id: recipe.id}) }}">ändern...</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tr>
+	</table>
+</div>{% endblock %}
