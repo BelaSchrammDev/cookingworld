@@ -24,9 +24,8 @@
 			<nav id="nav_bar" class="nav_bar">
 				<a href="{{ path('app_home')}}">Start</a>
 				<a href="{{ path('app_recipes.list')}}">Rezepte</a>
-				<a href="./salad.html">Rezept des Tages</a>
 				{% if app.user %}
-					<a href="{{ path('app_profile')}}">{{ app.user.userIdentifier }}</a>
+					<a href="{{ path('app_profile.edit')}}">{{ app.user.userIdentifier }}</a>
 					<a href="{{ path('app_logout')}}">Logout</a>
 				{% else %}
 					<a href="{{ path('app_login')}}">Login</a>

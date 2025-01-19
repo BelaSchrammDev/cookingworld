@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div class="container">
+		<h2>Profil von
+			{{ user.userIdentifier }}</h2>
+		<br>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Benutzername</th>
+                    <td class="w-50">{{ user.userIdentifier }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td class="w-50">{{ user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+	</div>
+{% endblock %}

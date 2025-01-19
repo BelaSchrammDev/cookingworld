@@ -11,18 +11,18 @@
                 <tr>
                     <th>Benutzername</th>
                     <td class="w-50">{{ app.user.userIdentifier }}</td>
-                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile') }}">Benutzername ändern</a></td>
+                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit') }}">Benutzername ändern</a></td>
                 </tr>
                 <tr>
                     <th>Email</th>
                     <td class="w-50">{{ app.user.email }}</td>
-                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile') }}">Email ändern</a></td>
+                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit') }}">Email ändern</a></td>
                 </tr>
             </tbody>
         </table>
         <div class="d-flex align-items-end flex-column gap-3">
-            <a href="{{ path('app_profile') }}">Profil deaktivieren</a>
-            <a href="{{ path('app_profile') }}">Passwort zurücksetzen</a>
+            <a href="{{ path('app_profile.edit') }}">Profil deaktivieren</a>
+            <a href="{{ path('app_profile.edit') }}">Passwort zurücksetzen</a>
         </div>
 	</div>
 {% endblock %}

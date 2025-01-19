@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/', name: 'app_recipes.')]
-class RecipesController extends AbstractController
+class RecipesController extends BaseUserController
 {
     #[Route('/listrecipes', name: 'list')]
     public function listRecipes(RecipeRepository $recipeRepository): Response
@@ -34,19 +35,25 @@ class RecipesController extends AbstractController
     }
 
     #[Route('/create-recipe', name: 'create')]
-    public function createRecipe(Request $request, ManagerRegistry $mr): Response
+    public function createRecipe(Request $request, ManagerRegistry $mr, UserRepository $userRepository): Response
     {
         $newRecipe = new Recipe();
         $formRecipe = $this->createForm(RecipeType::class, $newRecipe);
 
         $formRecipe->handleRequest($request);
         if ($formRecipe->isSubmitted() && $formRecipe->isValid()) {
+            // get the picture from the form
             $picture = $request->files->get('recipe')['picture'];
             if ($picture) {
                 $pictureName = md5(uniqid()) . '.' . $picture->guessExtension();
                 $picture->move($this->getParameter('recipes_directory'), $pictureName);
                 $newRecipe->setPicture($pictureName);
             }
+
+            // get the user from the session
+            $user = $this->getUser();
+            $user->addRecipe($newRecipe);
+            $newRecipe->setCreator($this->getUser());
 
             $entityManager = $mr->getManager();
             $entityManager->persist($newRecipe);

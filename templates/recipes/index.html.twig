@@ -4,13 +4,16 @@
 
 	<div class="d-flex justify-content-between">
 		<h1>Rezepte</h1>
+		{% if app.user %}
 		<a href="{{ path('app_recipes.create') }}" class="button-green">Rezept hinzufügen</a>
+		{% endif %}
 	</div>
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 				<th>#</th>
 				<th>Name</th>
+				<th>von</th>
 				<th>Beschreibung</th>
 				<th>Aktionen</th>
 			</thead>
@@ -28,9 +31,12 @@
 						<a href="{{ path('app_recipes.show', { id: recipe.id}) }}">
 							{{ recipe.name }}</a>
 					</td>
+					<td><a href="{{ path('app_profile.show', { id: recipe.creator.getId() }) }}"> {{ recipe.creator.getUserName() }}</a></td>
 					<td>{{ recipe.shortdescription }}</td>
 					<td>
+					{% if app.user.id == recipe.creator.id %}
 						<a href="{{ path('app_recipes.edit', { id: recipe.id}) }}">ändern...</a>
+					{% endif %}
 					</td>
 				</tr>
 			{% endfor %}
