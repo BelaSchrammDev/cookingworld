@@ -18,6 +18,8 @@
 	</head>
 
 	<body class="d-flex flex-column">
+
+		{# header #}
 		<header class="main_container">
 			<img src="{{ asset('img/logo.png')}}" alt="">
 			<nav id="nav_bar" class="nav_bar">
@@ -33,8 +35,9 @@
 			<img onclick="burger_menu_open()" class="burger_menu" src="{{ asset('img/burger.svg')}}" alt="">
 			<div id="nav_bar_overlay" onclick="burger_menu_close()" class="nav_bar_overlay"></div>
 		</header>
-
-
+		{# header END #}
+		
+		{# flash messages #}
 		{% for message in app.flashes('success') %}
 			<div class="mt-2 container alert alert-success">
 				<h3>{{ message }}</h3>
@@ -46,11 +49,15 @@
 				<h3>{{ message }}</h3>
 			</div>
 		{% endfor %}
+		{# flash messages END #}
 
+		{# body #}
 		<div class="container flex-grow-1">
 			{% block body %}{% endblock %}
 		</div>
+		{# body END #}
 
+		{# footer #}
 		<footer class="main_container">
 			<div class="footer_copyright_logo">
 				<div class="footer_copyright">
@@ -65,5 +72,7 @@
 				<a href="./privacypolicy.html">Datenschutz</a>
 			</div>
 		</footer>
+		{# footer END #}
+		
 	</body>
 </html>

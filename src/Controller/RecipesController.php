@@ -46,7 +46,7 @@ class RecipesController extends BaseUserController
             $picture = $request->files->get('recipe')['picture'];
             if ($picture) {
                 $pictureName = md5(uniqid()) . '.' . $picture->guessExtension();
-                $picture->move($this->getParameter('recipes_directory'), $pictureName);
+                $picture->move($this->getParameter('recipes_img_directory'), $pictureName);
                 $newRecipe->setPicture($pictureName);
             }
 
@@ -86,7 +86,7 @@ class RecipesController extends BaseUserController
             } else if ($picture) {
                 // check if there is already a picture
                 $pictureName = md5(uniqid()) . '.' . $picture->guessExtension();
-                $picture->move($this->getParameter('recipes_directory'), $pictureName);
+                $picture->move($this->getParameter('recipes_img_directory'), $pictureName);
                 $recipe->setPicture($pictureName);
             }
 

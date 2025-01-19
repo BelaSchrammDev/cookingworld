@@ -9,6 +9,11 @@
         <table class="table">
             <tbody>
                 <tr>
+                    <th>Profilebild</th>
+                    <td class="w-50">{{ app.user.getPicture() }}</td>
+                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit_picture') }}">Bild ändern</a></td>
+                </tr>
+                <tr>
                     <th>Benutzername</th>
                     <td class="w-50">{{ app.user.userIdentifier }}</td>
                     <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit') }}">Benutzername ändern</a></td>
