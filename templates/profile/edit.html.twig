@@ -3,31 +3,33 @@
 {% block body %}
 
 	<div class="container">
-		<h2>Profil von
-			{{ app.user.userIdentifier }}</h2>
-		<br>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Profilebild</th>
-                    <td class="w-50">{{ app.user.getPicture() }}</td>
-                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit_picture') }}">Bild ändern</a></td>
-                </tr>
-                <tr>
-                    <th>Benutzername</th>
-                    <td class="w-50">{{ app.user.userIdentifier }}</td>
-                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit') }}">Benutzername ändern</a></td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td class="w-50">{{ app.user.email }}</td>
-                    <td class="d-flex flex-nowrap justify-content-end"><a href="{{ path('app_profile.edit') }}">Email ändern</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-flex align-items-end flex-column gap-3">
-            <a href="{{ path('app_profile.edit') }}">Profil deaktivieren</a>
-            <a href="{{ path('app_profile.edit') }}">Passwort zurücksetzen</a>
-        </div>
+		<div class="d-flex justify-content-between align-items-start gap-3">
+			<h2 class="flex-grow-1">Profil von
+				{{ app.user.userIdentifier }}</h2>
+			<a href="{{ path('app_profile.edit_picture') }}">
+			<img src="{{ asset('img/users/' ~ image_helper.getUserImagePath(app.user)) }}" class="avatar-show avatar-clickable"></td>
+            </a>
 	</div>
-{% endblock %}
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Benutzername</th>
+				<td class="w-50">{{ app.user.userIdentifier }}</td>
+				<td class="d-flex flex-nowrap justify-content-end">
+					<a href="{{ path('app_profile.edit') }}">Benutzername ändern</a>
+				</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td class="w-50">{{ app.user.email }}</td>
+				<td class="d-flex flex-nowrap justify-content-end">
+					<a href="{{ path('app_profile.edit') }}">Email ändern</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="d-flex align-items-end flex-column gap-3">
+		<a href="{{ path('app_profile.edit') }}">Profil deaktivieren</a>
+		<a href="{{ path('app_profile.edit') }}">Passwort zurücksetzen</a>
+	</div>
+</div>{% endblock %}

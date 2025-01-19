@@ -5,7 +5,7 @@
 	<div class="d-flex justify-content-between">
 		<h1>Rezepte</h1>
 		{% if app.user %}
-		<a href="{{ path('app_recipes.create') }}" class="button-green">Rezept hinzufügen</a>
+			<a href="{{ path('app_recipes.create') }}" class="button-green">Rezept hinzufügen</a>
 		{% endif %}
 	</div>
 	<div class="table-responsive">
@@ -31,12 +31,17 @@
 						<a href="{{ path('app_recipes.show', { id: recipe.id}) }}">
 							{{ recipe.name }}</a>
 					</td>
-					<td><a href="{{ path('app_profile.show', { id: recipe.creator.getId() }) }}"> {{ recipe.creator.getUserName() }}</a></td>
+					<td>
+						<a class="d-flex align-items-start gap-3" href="{{ path('app_profile.show', { id: recipe.creator.getId() }) }}">
+							<img class="avatar-list" src="{{ asset('img/users/' ~ image_helper.getUserImagePath(recipe.creator)) }}">
+							{{ recipe.creator.getUserName() }}
+						</a>
+					</td>
 					<td>{{ recipe.shortdescription }}</td>
 					<td>
-					{% if app.user.id == recipe.creator.id %}
-						<a href="{{ path('app_recipes.edit', { id: recipe.id}) }}">ändern...</a>
-					{% endif %}
+						{% if app.user and app.user.id == recipe.creator.id %}
+							<a href="{{ path('app_recipes.edit', { id: recipe.id}) }}">ändern...</a>
+						{% endif %}
 					</td>
 				</tr>
 			{% endfor %}

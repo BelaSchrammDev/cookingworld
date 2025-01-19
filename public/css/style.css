@@ -81,6 +81,56 @@ body {
 }    
 
 /* ---------------------------------------------- */
+/* cookingworld profile pictures */
+/* ---------------------------------------------- */
+
+.avatar-choise {
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.avatar-unselect {
+    border: 5px solid transparent;
+}
+
+.avatar-unselect:hover {
+    transform: scale(1.1);
+    transition: all 0.125s ease-in-out;
+    cursor: pointer;
+}
+
+.avatar-select {
+    border: 5px solid green;
+    pointer-events: none;
+}
+
+.avatar-list {
+    width: auto;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.avatar-show {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.avatar-clickable {
+    border: 1px solid transparent;
+}
+.avatar-clickable:hover {
+    border: 1px solid green;
+    filter: brightness(1.1);
+    transition: all 0.125s ease-in-out;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------- */
 /* cookingworld recipes */
 /* ---------------------------------------------- */
 

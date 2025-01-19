@@ -6,17 +6,12 @@
 		<h2>Profil von
 			{{ user.userIdentifier }}</h2>
 		<br>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Benutzername</th>
-                    <td class="w-50">{{ user.userIdentifier }}</td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td class="w-50">{{ user.email }}</td>
-                </tr>
-            </tbody>
-        </table>
+		<div class="d-flex justify-content-between">
+			<div class="d-flex flex-column gap-3">
+                <span>EMail</span>
+				{{ user.email }}
+			</div>
+			<img class="avatar-show" src="{{ asset('img/users/' ~ image_helper.getUserImagePath(user)) }}">
+		</div>
 	</div>
 {% endblock %}

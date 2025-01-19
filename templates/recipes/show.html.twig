@@ -4,10 +4,12 @@
 
 	<div class="d-flex justify-content-between">
 		<h2>{{ recipe.name }}</h2>
-        <div class="d-flex gap-3">
-            <a href="{{ path('app_recipes.edit', { id: recipe.id}) }}" class="">ändern</a>
-            <a href="{{ path('app_recipes.list') }}" class="">zur Rezeptliste</a>
-        </div>
+		<div class="d-flex gap-3">
+			{% if app.user and app.user.id == recipe.creator.id %}
+				<a href="{{ path('app_recipes.edit', { id: recipe.id}) }}" class="">ändern</a>
+			{% endif %}
+			<a href="{{ path('app_recipes.list') }}" class="">zur Rezeptliste</a>
+		</div>
 	</div>
 
 	<div class="my-3 d-flex justify-content-start gap-3">

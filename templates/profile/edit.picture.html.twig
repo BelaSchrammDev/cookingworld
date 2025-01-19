@@ -3,21 +3,46 @@
 {% block body %}
 
 	<div class="container">
-		<h2>Profil ändern von
-			{{ app.user.userIdentifier }}</h2>
-		<br>
-        <div class="d-flex justify-content-between flex-wrap gap-3">
-        {% for pic in defaultPictures %}
-            <img src="{{ asset(defaultPicturesDirectory ~ pic) }}" alt="{{ pic }}" class="img-thumbnail" style="width: 100px;">
-        {% endfor %}
-        </div>
-		{{ form_start(selectPictureForm) }}
-		{{ form_row(selectPictureForm.picture) }}
-		<div class="d-flex justify-content-end gap-3">
-			<button type="submit" class="btn btn-primary">Bild ändern</button>
-			<a href="{{ path('app_profile.edit') }}" class="btn btn-danger">Zurück</a>
-		</div>
-		{{ form_end(selectPictureForm) }}
+		<div class="d-flex flex-column gap-3">
+			<h2>Profil ändern von
+				{{ app.user.userIdentifier }}</h2>
+			<h3>Avatar Bild auswählen</h3>
+			<div class="d-flex justify-content-between flex-wrap gap-3">
+				{% for pic in defaultPictures %}
+					{% if app.user.getAvatar() == pic %}
+						<img onclick="clickAvatar(event)" src="{{ asset(defaultPicturesDirectory ~ pic) }}" alt="{{ pic }}" class="avatar-choise avatar-select">
+					{% else %}
+						<img onclick="clickAvatar(event)" src="{{ asset(defaultPicturesDirectory ~ pic) }}" alt="{{ pic }}" class="avatar-choise avatar-unselect">
+					{% endif %}
+				{% endfor %}
+			</div>
+			<h3>...oder eigenes Bild hochladen</h3>
+			{{ form_start(selectPictureForm) }}
+			{{ form_widget(selectPictureForm.picture) }}
+			<div class="d-flex justify-content-end gap-3">
+				<button type="submit" class="btn btn-primary">Bild ändern</button>
+				<a href="{{ path('app_profile.edit') }}" class="btn btn-outline-danger">Zurück</a>
+			</div>
+			{{ form_end(selectPictureForm) }}
 
+		</div>
 	</div>
+
+    <script>
+        function clickAvatar(event) {
+            let avatar = event.target;
+            let oldAvatar = document.getElementsByClassName('avatar-select')[0];
+            if (avatar === oldAvatar) return;
+            console.log(avatar);
+            console.log(oldAvatar);
+            let hiddenInput = document.getElementById('form_avatar');
+
+            oldAvatar.classList.remove('avatar-select');
+            oldAvatar.classList.add('avatar-unselect');
+            avatar.classList.remove('avatar-unselect');
+            avatar.classList.add('avatar-select');
+
+            hiddenInput.value = avatar.getAttribute('alt');
+            }
+    </script>
 {% endblock %}
