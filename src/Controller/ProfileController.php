@@ -51,7 +51,19 @@ class ProfileController extends BaseUserController
             }
         }
 
+        $defaultPictures = [];
+        if (is_dir($this->getParameter('default_avatar_img_directory'))) {
+            $defaultPictures = array_diff(scandir($this->getParameter('default_avatar_img_directory')), ['..', '.']);
+        }
+        else {
+            $this->addFlash('warning', 'Default avatar directory not found: ' . $this->getParameter('default_avatar_img_directory'));
+        }
+
+        dump($defaultPictures);
+
         return $this->render('profile/edit.picture.html.twig', [
+            'defaultPictures' => $defaultPictures,
+            'defaultPicturesDirectory' => 'img/users/default/',
             'selectPictureForm' => $selectPictureForm->createView(),
         ]);
     }

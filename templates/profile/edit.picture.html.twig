@@ -6,6 +6,11 @@
 		<h2>Profil ändern von
 			{{ app.user.userIdentifier }}</h2>
 		<br>
+        <div class="d-flex justify-content-between flex-wrap gap-3">
+        {% for pic in defaultPictures %}
+            <img src="{{ asset(defaultPicturesDirectory ~ pic) }}" alt="{{ pic }}" class="img-thumbnail" style="width: 100px;">
+        {% endfor %}
+        </div>
 		{{ form_start(selectPictureForm) }}
 		{{ form_row(selectPictureForm.picture) }}
 		<div class="d-flex justify-content-end gap-3">

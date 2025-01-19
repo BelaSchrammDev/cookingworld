@@ -44,6 +44,12 @@
 			</div>
 		{% endfor %}
 
+		{% for message in app.flashes('warning') %}
+			<div class="mt-2 container alert alert-warning">
+				<h3>{{ message }}</h3>
+			</div>
+		{% endfor %}
+
 		{% for message in app.flashes('error') %}
 			<div class="mt-2 container alert alert-danger">
 				<h3>{{ message }}</h3>
